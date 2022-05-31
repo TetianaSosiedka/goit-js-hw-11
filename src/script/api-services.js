@@ -17,7 +17,7 @@ export default class ApiServices {
       }&imageexport_type=${this.imageexport_type}&orientation=${
         this.orientation
       }&safesearch=${this.safesearch}`
-    ).then(({ data }) => data);
+    ).then(({ data }) => data.hits);
   }
   get query() {
     return this.searchQuery;
