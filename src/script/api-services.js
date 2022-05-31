@@ -9,6 +9,8 @@ export default class ApiServices {
     this.imageexport_type = 'photo';
     this.orientation = 'horizontal';
     this.safesearch = true;
+    this.page = 1;
+    this.per_page = 40;
   }
   searchImg() {
     return axios(
@@ -16,8 +18,19 @@ export default class ApiServices {
         this.searchQuery
       }&imageexport_type=${this.imageexport_type}&orientation=${
         this.orientation
-      }&safesearch=${this.safesearch}`
-    ).then(({ data }) => data.hits);
+      }&safesearch=${this.safesearch}&page=${this.page}&per_page=${
+        this.per_page
+      }`
+    ).then(({ data }) => {
+      this.incrementPage();
+      return data.hits;
+    });
+  }
+  incrementPage() {
+    this.page += 1;
+  }
+  resetPage() {
+    this.page = 1;
   }
   get query() {
     return this.searchQuery;

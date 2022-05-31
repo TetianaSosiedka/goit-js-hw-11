@@ -3,7 +3,7 @@ export default class RenderList {
     this.paramsArticle = [];
     this.refsGallery = refsGallery;
   }
-  marcapGallery() {
+  renderGallery() {
     const list = this.renderList();
     this.refsGallery.insertAdjacentHTML('beforeend', list);
   }
