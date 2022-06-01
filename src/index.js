@@ -1,4 +1,6 @@
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import ApiServices from './script/api-services.js';
 import RenderList from './script/render-list.js';
@@ -72,3 +74,11 @@ function markapGallery() {
 function cliarGalleryContainer() {
   refs.gallery.innerHTML = '';
 }
+//========================================================
+function oupenModalWindow() {
+  new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+}
+oupenModalWindow();

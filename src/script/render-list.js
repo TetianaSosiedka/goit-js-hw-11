@@ -19,8 +19,9 @@ export default class RenderList {
           comments,
           downloads,
         }) => {
-          return `<div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+          return `
+  <a class="gallery__item" href="${largeImageURL}">
+  <img class='gallery__image' src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
       <b>${likes}</b>
@@ -35,7 +36,7 @@ export default class RenderList {
       <b>${downloads}</b>
     </p>
   </div>
-</div>`;
+  </a>`;
         }
       )
       .join('');
