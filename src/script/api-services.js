@@ -10,7 +10,8 @@ export default class ApiServices {
     this.orientation = 'horizontal';
     this.safesearch = true;
     this.page = 1;
-    this.per_page = 40;
+    this.per_page = 200;
+    this.totalPages = 0;
   }
   searchImg() {
     return axios(
@@ -23,8 +24,13 @@ export default class ApiServices {
       }`
     ).then(({ data }) => {
       this.incrementPage();
-      return data.hits;
+
+      return { hits: data.hits, totalHits: data.totalHits };
     });
+  }
+  totalPage() {
+    this.totalPages = (this.page - 1) * this.per_page;
+    return this.totalPages;
   }
   incrementPage() {
     this.page += 1;
