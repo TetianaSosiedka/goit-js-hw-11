@@ -24,16 +24,16 @@ export default class RenderList {
   <img class='gallery__image' src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
-      <b>${likes}</b>
+      <b>Likes</b> ${likes}
     </p>
     <p class="info-item">
-      <b>${views}</b>
+      <b>Views</b> ${views}
     </p>
     <p class="info-item">
-      <b>${comments}</b>
+      <b>Comments</b> ${comments}
     </p>
     <p class="info-item">
-      <b>${downloads}</b>
+      <b>Downloads</b> ${downloads}
     </p>
   </div>
   </a>`;

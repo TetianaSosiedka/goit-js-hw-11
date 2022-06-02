@@ -61,8 +61,8 @@ function markapGallery() {
       newRenderList.params = hits;
 
       newRenderList.renderGallery();
-        let gallery = new SimpleLightbox('.gallery a');
-  gallery.on('show.simplelightbox', () => {});
+      let gallery = new SimpleLightbox('.gallery a');
+      gallery.on('show.simplelightbox', () => {});
       newLoadMoreBtn.enable();
       return totalHits;
     } else {
