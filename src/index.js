@@ -77,10 +77,8 @@ function cliarGalleryContainer() {
   refs.gallery.innerHTML = '';
 }
 //========================================================
-function oupenModalWindow() {
-  new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
-}
-oupenModalWindow();
+// function oupenModalWindow() {
+//   let gallery = new SimpleLightbox('.gallery a');
+//   gallery.on('show.simplelightbox', () => {});
+// }
+// oupenModalWindow();
