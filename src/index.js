@@ -24,7 +24,7 @@ refs.form.addEventListener('input', () => {
   refs.buttonSearchForm.disabled = false;
 });
 refs.form.addEventListener('submit', onSearch);
-refs.buttonLoadMore.addEventListener('click', markapGallery());
+refs.buttonLoadMore.addEventListener('click', markapGallery);
 //========================================================
 function onSearch(event) {
   event.preventDefault();
@@ -61,6 +61,8 @@ function markapGallery() {
       newRenderList.params = hits;
 
       newRenderList.renderGallery();
+        let gallery = new SimpleLightbox('.gallery a');
+  gallery.on('show.simplelightbox', () => {});
       newLoadMoreBtn.enable();
       return totalHits;
     } else {
