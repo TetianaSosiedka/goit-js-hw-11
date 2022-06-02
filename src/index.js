@@ -45,9 +45,6 @@ async function onSearch(event) {
       newApiServices.resetPage();
       const { hits, totalHits } = await getDateFromApiServices();
       markapGallery({ hits, totalHits });
-      newApiServices.searchImg().then(({ totalHits }) => {
-        Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
-      });
     } else {
       Notiflix.Notify.info('Please enter a request.');
     }
@@ -86,6 +83,8 @@ function markapGallery({ hits, totalHits }) {
     );
     return;
   } else if (newApiServices.totalPage() < totalHits) {
+    Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
+
     newRenderList.params = hits;
 
     newRenderList.renderGallery();
