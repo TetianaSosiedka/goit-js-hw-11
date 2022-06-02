@@ -19,12 +19,16 @@ img {
   display: block;
   max-width: 100%;
 }
-
+//==============================
 .search-form {
   display: flex;
   justify-content: center;
-  padding: 8px;
-  margin-bottom: 24px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  z-index: 100;
 }
 .button.load-more {
   display: flex;
@@ -38,4 +42,14 @@ img {
 
 .button > .spinner.is-hidden {
   display: none;
+}
+//===============================
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 13px;
+  b {
+    display: block;
+  }
 }

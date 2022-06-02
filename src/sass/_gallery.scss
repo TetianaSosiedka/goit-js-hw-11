@@ -6,20 +6,21 @@
 .gallery {
   display: grid;
   max-width: 1140px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-auto-rows: 240px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-gap: 12px;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 30px;
-  overflow: hidden;
+  margin-top: 45px;
 }
 
 .gallery__item {
   position: relative;
+  color: black;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
 }
 
 .gallery__image:hover {
@@ -27,7 +28,7 @@
 }
 
 .gallery__image {
-  height: 100%;
+  height: 200px;
   width: 100%;
   object-fit: cover;
   transition: transform var(--animation-duration) var(--timing-function);
