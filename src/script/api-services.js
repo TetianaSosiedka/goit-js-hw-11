@@ -13,20 +13,24 @@ export default class ApiServices {
     this.per_page = 40;
     this.totalPages = 0;
   }
-  searchImg() {
-    return axios(
-      `${this.#URL}?key=${this.#API_KEY}&q=${
-        this.searchQuery
-      }&imageexport_type=${this.imageexport_type}&orientation=${
-        this.orientation
-      }&safesearch=${this.safesearch}&page=${this.page}&per_page=${
-        this.per_page
-      }`
-    ).then(({ data }) => {
-      this.incrementPage();
+  async searchImg() {
+    try {
+      return axios(
+        `${this.#URL}?key=${this.#API_KEY}&q=${
+          this.searchQuery
+        }&imageexport_type=${this.imageexport_type}&orientation=${
+          this.orientation
+        }&safesearch=${this.safesearch}&page=${this.page}&per_page=${
+          this.per_page
+        }`
+      ).then(({ data }) => {
+        this.incrementPage();
 
-      return { hits: data.hits, totalHits: data.totalHits };
-    });
+        return { hits: data.hits, totalHits: data.totalHits };
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
   totalPage() {
     this.totalPages = (this.page - 1) * this.per_page;
