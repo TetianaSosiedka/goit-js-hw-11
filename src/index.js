@@ -35,19 +35,43 @@ async function onSearch(event) {
     event.preventDefault();
 
     cliarGalleryContainer();
-    newLoadMoreBtn.hide();
 
     const searchQuery = event.currentTarget.elements.searchQuery.value.trim('');
 
     if (searchQuery != '') {
+      newLoadMoreBtn.show();
+      newLoadMoreBtn.disable();
+
       refs.buttonSearchForm.disabled = true;
       newApiServices.query = searchQuery;
       newApiServices.resetPage();
+
       const { hits, totalHits } = await getDateFromApiServices();
+
+      if (hits.length === 0) {
+        newLoadMoreBtn.hide();
+        Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+        return;
+      }
+
       markapGallery({ hits, totalHits });
+      Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
     } else {
       Notiflix.Notify.info('Please enter a request.');
     }
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+async function onLoadMore() {
+  try {
+    newLoadMoreBtn.show();
+    newLoadMoreBtn.disable();
+    const { hits, totalHits } = await getDateFromApiServices();
+    markapGallery({ hits, totalHits });
   } catch (error) {
     console.log(error.message);
   }
@@ -62,29 +86,10 @@ async function getDateFromApiServices() {
   }
 }
 
-async function onLoadMore() {
-  try {
-    const { hits, totalHits } = await getDateFromApiServices();
-    markapGallery({ hits, totalHits });
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
 function markapGallery({ hits, totalHits }) {
-  newLoadMoreBtn.show();
-  newLoadMoreBtn.disable();
-
-  if (hits.length === 0) {
-    newLoadMoreBtn.hide();
-
-    Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    return;
-  } else if (newApiServices.totalPage() < totalHits) {
-    Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
-
+  if (newApiServices.totalPage() < totalHits) {
+    newLoadMoreBtn.show();
+    newLoadMoreBtn.disable();
     newRenderList.params = hits;
 
     newRenderList.renderGallery();
