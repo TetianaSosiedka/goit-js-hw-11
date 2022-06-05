@@ -71,7 +71,19 @@ async function onLoadMore() {
     newLoadMoreBtn.show();
     newLoadMoreBtn.disable();
     const { hits, totalHits } = await getDateFromApiServices();
-    markapGallery({ hits, totalHits });
+    console.log(newApiServices.totalArticle());
+    if (newApiServices.totalArticle() < totalHits) {
+      markapGallery({ hits, totalHits });
+    } else {
+      if (newApiServices.totalArticle() - totalHits < hits.length) {
+        markapGallery({ hits, totalHits });
+      }
+      newLoadMoreBtn.hide();
+
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
+    }
   } catch (error) {
     console.log(error.message);
   }
@@ -86,27 +98,17 @@ async function getDateFromApiServices() {
   }
 }
 
-function markapGallery({ hits, totalHits }) {
-  if (newApiServices.totalPage() < totalHits) {
-    newLoadMoreBtn.show();
-    newLoadMoreBtn.disable();
-    newRenderList.params = hits;
+function markapGallery({ hits }) {
+  newLoadMoreBtn.show();
+  newLoadMoreBtn.disable();
+  newRenderList.params = hits;
 
-    newRenderList.renderGallery();
+  newRenderList.renderGallery();
 
-    let gallery = new SimpleLightbox('.gallery a');
-    gallery.on('show.simplelightbox', () => {});
+  let gallery = new SimpleLightbox('.gallery a');
+  gallery.on('show.simplelightbox', () => {});
 
-    newLoadMoreBtn.enable();
-
-    return totalHits;
-  } else {
-    newLoadMoreBtn.hide();
-
-    Notiflix.Notify.info(
-      "We're sorry, but you've reached the end of search results."
-    );
-  }
+  newLoadMoreBtn.enable();
 }
 
 function cliarGalleryContainer() {

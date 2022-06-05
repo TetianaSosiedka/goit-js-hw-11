@@ -10,8 +10,8 @@ export default class ApiServices {
     this.orientation = 'horizontal';
     this.safesearch = true;
     this.page = 1;
-    this.per_page = 40;
-    this.totalPages = 0;
+    this.per_page = 80;
+    this.totalArticles = 0;
   }
   async searchImg() {
     try {
@@ -32,9 +32,9 @@ export default class ApiServices {
       console.log(error.message);
     }
   }
-  totalPage() {
-    this.totalPages = (this.page - 1) * this.per_page;
-    return this.totalPages;
+  totalArticle() {
+    this.totalArticles = (this.page - 1) * this.per_page;
+    return this.totalArticles;
   }
   incrementPage() {
     this.page += 1;
