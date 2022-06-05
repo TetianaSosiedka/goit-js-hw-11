@@ -10,7 +10,7 @@ export default class ApiServices {
     this.orientation = 'horizontal';
     this.safesearch = true;
     this.page = 1;
-    this.per_page = 80;
+    this.per_page = 40;
     this.totalArticles = 0;
   }
   async searchImg() {
